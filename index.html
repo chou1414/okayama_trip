@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>晴天之國岡山七日深度之旅｜互動行程地圖</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    .shadow-soft { box-shadow: 0 6px 24px rgba(0,0,0,.06); }
+    .jp-card { border-radius: 16px; }
+    .chip { border-radius: 9999px; padding: 2px 8px; font-size: 12px; }
+    .chip-red { background:#fee2e2; color:#991b1b; }
+    .chip-orange { background:#ffedd5; color:#9a3412; }
+    .chip-blue { background:#dbeafe; color:#1e3a8a; }
+    .jpn-gradient { background:linear-gradient(180deg,#fff,#f7fafc); }
+    .btn { @apply px-3 py-1 rounded-md text-blue-700 bg-blue-50 hover:bg-blue-100 transition; }
+  </style>
+</head>
+<body class="bg-[#fafaf8] text-gray-800">
+  <header class="jpn-gradient">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+      <h1 class="text-2xl md:text-3xl font-bold tracking-tight">晴天之國岡山七日深度之旅</h1>
+      <p class="text-gray-600 mt-1">互動行程時間軸・景點資訊卡・建議路線・一鍵開啟 Google 地圖與街景</p>
+      <div class="mt-4 flex flex-wrap gap-2 text-sm">
+        <span class="chip chip-red">景點</span>
+        <span class="chip chip-orange">美食</span>
+        <span class="chip chip-blue">住宿</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 pb-24">
+    <!-- Tabs -->
+    <div class="sticky top-0 bg-[#fafaf8] z-10 py-3 mb-4 border-b">
+      <div class="flex gap-2 overflow-x-auto no-scrollbar text-sm">
+        <button class="tab-btn btn" data-target="#tab-timeline">行程時間軸</button>
+        <button class="tab-btn btn" data-target="#tab-cards">景點資訊卡</button>
+        <button class="tab-btn btn" data-target="#tab-routes">路線規劃</button>
+        <button class="tab-btn btn" data-target="#tab-map">地圖</button>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <section id="tab-timeline" class="tab-panel">
+      <div class="space-y-4">
+        <!-- Day blocks -->
+        <!-- Day 1 -->
+        <details class="jp-card bg-white p-4 shadow-soft">
+          <summary class="cursor-pointer font-semibold text-lg">Day 1：抵達關西・轉抵岡山初探</summary>
+          <div class="mt-3 border-l pl-4 space-y-3">
+            <div><span class="font-semibold">13:10</span> 抵達KIX入境。</div>
+            <div><span class="font-semibold">15:00</span> Haruka→新大阪→山陽新幹線抵達岡山站。</div>
+            <div><span class="font-semibold">17:10</span> 入住「滋庵」。</div>
+            <div><span class="font-semibold">18:30</span> 晚餐「味司野村」德米咖哩炸豬排丼。
+              <a class="text-blue-600 underline" target="_blank" href="https://youtu.be/rEfcoPMnAWU?t=60">美食Vlog @1:00</a>
+            </div>
+          </div>
+        </details>
+
+        <!-- Day 2 -->
+        <details class="jp-card bg-white p-4 shadow-soft">
+          <summary class="cursor-pointer font-semibold text-lg">Day 2：後樂園＋岡山城・在地美食</summary>
+          <div class="mt-3 border-l pl-4 space-y-3">
+            <div><span class="font-semibold">09:00</span> 後樂園（8:00開）＋岡山城（9:00開）。
+              <a class="text-blue-600 underline" target="_blank" href="https://youtu.be/q_fBTfi_IPo?t=0">後樂園Vlog</a>
+              <a class="text-blue-600 underline ml-2" target="_blank" href="https://youtu.be/dilSUoFZZB0?t=133">岡山城Vlog @2:13</a>
+            </div>
+            <div><span class="font-semibold">12:00</span> 岡山站一番街/AEON午餐。</div>
+            <div><span class="font-semibold">18:00</span> 千屋牛燒肉「J’s苑」。</div>
+          </div>
+        </details>
+
+        <!-- Day 3 -->
+        <details class="jp-card bg-white p-4 shadow-soft">
+          <summary class="cursor-pointer font-semibold text-lg">Day 3：吉備津神社・吉備路單車</summary>
+          <div class="mt-3 border-l pl-4 space-y-3">
+            <div><span class="font-semibold">09:00</span> JR桃太郎線→吉備津神社。
+              <a class="text-blue-600 underline" target="_blank" href="https://youtu.be/dilSUoFZZB0?t=0">神社Vlog</a>
+            </div>
+            <div><span class="font-semibold">13:00</span> 吉備路自行車道慢遊。
+              <a class="text-blue-600 underline" target="_blank" href="https://youtu.be/eSvjDPuyAIQ?t=180">單車Vlog @3:00</a>
+            </div>
+          </div>
+        </details>
+
+        <!-- Day 4 -->
+        <details class="jp-card bg-white p-4 shadow-soft">
+          <summary class="cursor-pointer font-semibold text-lg">Day 4：高松日帰り・栗林公園與名物</summary>
+          <div class="mt-3 border-l pl-4 space-y-3">
+            <div><span class="font-semibold">08:00</span> JR Marine Liner 跨瀨戶大橋至高松。</div>
+            <div><span class="font-semibold">10:00</span> 栗林公園（7:00–17:30）。
+              <a class="text-blue-600 underline" target="_blank" href="https://youtu.be/GGLjIliLsLA?t=0">栗林公園Vlog</a>
+            </div>
+            <div><span class="font-semibold">12:30</span> うどん棒 高松本店。
+              <a class="text-blue-600 underline" target="_blank" href="https://youtu.be/Ey5usTKBO0s?t=44">烏龍麵Vlog @0:44</a>
+            </div>
+            <div><span class="font-semibold">14:00</span> 玉藻公園（高松城跡）。</div>
+            <div><span class="font-semibold">16:00</span> 返回岡山。</div>
+          </div>
+        </details>
+
+        <!-- Day 5 -->
+        <details class="jp-card bg-white p-4 shadow-soft">
+          <summary class="cursor-pointer font-semibold text-lg">Day 5：移動入住倉敷・美觀地區漫步</summary>
+          <div class="mt-3 border-l pl-4 space-y-3">
+            <div><span class="font-semibold">09:00</span> 岡山→倉敷，入住「撚る屋」。</div>
+            <div><span class="font-semibold">10:30</span> 倉敷美觀地區／大原美術館。
+              <a class="text-blue-600 underline" target="_blank" href="https://youtu.be/x0W-Uuedhck?t=0">美觀Vlog</a>
+            </div>
+            <div><span class="font-semibold">18:00</span> 三宅商店 晚餐（需預約）。</div>
+          </div>
+        </details>
+
+        <!-- Day 6 -->
+        <details class="jp-card bg-white p-4 shadow-soft">
+          <summary class="cursor-pointer font-semibold text-lg">Day 6：牛仔街・甜點之都</summary>
+          <div class="mt-3 border-l pl-4 space-y-3">
+            <div><span class="font-semibold">09:00</span> 倉敷デニムストリート。
+              <a class="text-blue-600 underline" target="_blank" href="https://youtu.be/MfPnEAziC-A?t=259">牛仔街Vlog @4:19</a>
+            </div>
+            <div><span class="font-semibold">11:00</span> くらしき桃子／有鄰庵 幸福布丁。</div>
+            <div><span class="font-semibold">14:00</span> 阿智神社登高望遠。</div>
+            <div><span class="font-semibold">18:00</span> 焼肉ゆう玄／或居酒屋。</div>
+          </div>
+        </details>
+
+        <!-- Day 7 -->
+        <details class="jp-card bg-white p-4 shadow-soft">
+          <summary class="cursor-pointer font-semibold text-lg">Day 7：返程與採買</summary>
+          <div class="mt-3 border-l pl-4 space-y-3">
+            <div>倉敷→岡山→新大阪→KIX，預留通關與退稅時間。</div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section id="tab-cards" class="tab-panel hidden">
+      <h2 class="font-semibold text-xl mb-3">景點 / 美食 / 住宿 資訊卡</h2>
+      <p class="text-sm text-gray-600 mb-4">每張卡片均含經緯度、Google 地圖與街景一鍵開啟。營業時間/參考消費為到訪前之一般參考，實際以店家公告為準。</p>
+
+      <div id="cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- Routes -->
+    <section id="tab-routes" class="tab-panel hidden">
+      <h2 class="font-semibold text-xl mb-3">每日路線規劃</h2>
+      <div class="space-y-4" id="routes"></div>
+    </section>
+
+    <!-- Map -->
+    <section id="tab-map" class="tab-panel hidden">
+      <h2 class="font-semibold text-xl mb-3">互動地圖</h2>
+      <div id="map" class="w-full h-96 rounded-lg shadow-soft"></div>
+      <div class="mt-2 text-sm">
+        <span class="inline-block w-3 h-3 rounded-full mr-1" style="background:#ef4444"></span>景點
+        <span class="inline-block w-3 h-3 rounded-full mr-1 ml-4" style="background:#f97316"></span>美食
+        <span class="inline-block w-3 h-3 rounded-full mr-1 ml-4" style="background:#3b82f6"></span>住宿
+      </div>
+    </section>
+  </main>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    // ---------- Data ----------
+    const places = [
+      // [name, type, lat, lng, city, hours, price, note]
+      ["岡山後樂園","spot",34.6681250,133.935139,"岡山市","08:00–17:00","成人¥500","日本三名園"],
+      ["岡山城","spot",34.6651806,133.9360528,"岡山市","09:00–17:30","成人¥400(與後樂園聯票¥720)","烏城"],
+      ["吉備津神社","spot",34.670667,133.850611,"岡山市","自由參觀","—","國寶本殿"],
+      ["吉備津彥神社","spot",34.6767528,133.8638528,"岡山市","自由參觀","—","備前國一宮"],
+      ["栗林公園","spot",34.329591,134.043968,"高松市","07:00–17:30","成人¥500","大名庭園"],
+      ["玉藻公園（高松城跡）","spot",34.349142,134.050792,"高松市","08:30–17:00(季)","成人¥200","海水護城河"],
+      ["丸亀町商店街","spot",34.343648,134.049979,"高松市","依店家","—","拱廊商店街"],
+      ["奉還町商店街","spot",34.668813,133.917260,"岡山市","依店家","—","昭和風情"],
+      ["倉敷美觀地區","spot",34.5964278,133.7708833,"倉敷市","全天","—","白壁土藏"],
+      ["大原美術館","spot",34.59611,133.77056,"倉敷市","09:00–17:00(冬季短)","成人¥2000","東西方名畫"],
+      ["倉敷デニムストリート","spot",34.594616,133.770959,"倉敷市","依店家","—","丹寧牛仔街"],
+      ["阿智神社","spot",34.59778,133.77361,"倉敷市","自由參拜","—","鶴形山眺望"],
+
+      ["味司野村(德米豬排丼)","food",34.66516,133.92376,"岡山市","11:00–15:00 等","¥750起","元祖デミカツ丼"],
+      ["吾妻寿司(岡山站)","food",34.665756,133.917437,"岡山市","11:00–22:00","—","岡山散壽司"],
+      ["J’s苑(千屋牛)","food",34.669552,133.914257,"岡山市","17:00–23:00","¥5000起","A5千屋牛"],
+      ["串兵衛 居酒屋","food",34.665508,133.930837,"岡山市","11:00–13:30/17:00–21:00","¥2000","串揚"],
+      ["うどん棒 高松本店","food",34.339484,134.048399,"高松市","11:00–14:30等","¥500–700","讚岐烏龍麵"],
+      ["骨付鳥 一鶴 高松店","food",34.343086,134.048602,"高松市","11:00–23:00等","—","骨付鳥 親/雛"],
+      ["くらしき桃子 本店","food",34.595649,133.772006,"倉敷市","10:00–17:00","¥1000左右","季節聖代"],
+      ["有鄰庵 咖啡","food",34.596697,133.771919,"倉敷市","11:00–17:00","—","幸福布丁"],
+      ["三宅商店(晚)","food",34.596356,133.772263,"倉敷市","18:00–21:00","¥2500–3500","需預約"],
+      ["焼肉ゆう玄","food",34.59781,133.769205,"倉敷市","17:00–23:00","¥4000起","放題可"],
+
+      ["滋庵 Jian Okayama","stay",34.665420,133.916729,"岡山市","—","—","JR岡山站步行3分"],
+      ["撚る屋 YORUYA","stay",34.597035,133.776218,"倉敷市","—","—","美觀區町家旅宿"]
+    ];
+
+    // YouTube references (map place name keyword -> [{title, url}])
+    const vlogRefs = {
+      "後樂園":[{title:"後樂園Vlog", url:"https://youtu.be/q_fBTfi_IPo?t=0"}],
+      "岡山城":[{title:"登岡山城", url:"https://youtu.be/dilSUoFZZB0?t=133"}],
+      "吉備津神社":[{title:"吉備津神社", url:"https://youtu.be/dilSUoFZZB0?t=0"}],
+      "吉備路":[{title:"吉備路單車", url:"https://youtu.be/eSvjDPuyAIQ?t=180"}],
+      "栗林公園":[{title:"栗林公園", url:"https://youtu.be/GGLjIliLsLA?t=0"}],
+      "美觀":[{title:"倉敷美觀", url:"https://youtu.be/x0W-Uuedhck?t=0"}],
+      "デニム":[{title:"牛仔街", url:"https://youtu.be/MfPnEAziC-A?t=259"}],
+      "野村":[{title:"德米丼", url:"https://youtu.be/rEfcoPMnAWU?t=60"}],
+      "うどん棒":[{title:"烏龍麵", url:"https://youtu.be/Ey5usTKBO0s?t=44"}]
+    };
+
+    // ---------- Helpers ----------
+    const gmapLink = (lat,lng) => `https://maps.google.com/?q=${lat},${lng}`;
+    const streetView = (lat,lng) => `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`;
+    const routeLink = (o,d,mode) => `https://www.google.com/maps/dir/?api=1&origin=${o[0]},${o[1]}&destination=${d[0]},${d[1]}&travelmode=${mode}`;
+
+    const typeChip = (t)=> t==="spot" ? '<span class="chip chip-red">景點</span>' :
+                         t==="food" ? '<span class="chip chip-orange">美食</span>' :
+                         '<span class="chip chip-blue">住宿</span>';
+
+    const typeColor = (t)=> t==="spot" ? "#ef4444" : (t==="food" ? "#f97316" : "#3b82f6");
+
+    // ---------- Render Cards ----------
+    function renderCards() {
+      const wrap = document.getElementById('cards');
+      wrap.innerHTML = "";
+      places.forEach(p => {
+        const [name, type, lat, lng, city, hours, price, note] = p;
+        const cards = document.createElement('div');
+        cards.className = "bg-white jp-card shadow-soft p-4";
+        const refKey = Object.keys(vlogRefs).find(k => name.includes(k)) || null;
+        const vlogHTML = refKey ? vlogRefs[refKey].map(v=>`<a class="text-blue-600 underline mr-2" target="_blank" href="${v.url}">${v.title}</a>`).join("") : "";
+        cards.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h3 class="text-lg font-semibold">${name} ${typeChip(type)}</h3>
+              <p class="text-sm text-gray-600">${city}</p>
+            </div>
+          </div>
+          <div class="mt-2 text-sm space-y-1">
+            <div>座標：${lat}, ${lng}</div>
+            <div>營業/開放：${hours}</div>
+            <div>參考消費：${price}</div>
+            <div class="text-gray-700">${note||""}</div>
+          </div>
+          <div class="mt-3 flex flex-wrap gap-2 text-sm">
+            <a class="btn" target="_blank" href="${gmapLink(lat,lng)}">Google 地圖</a>
+            <a class="btn" target="_blank" href="${streetView(lat,lng)}">街景</a>
+            ${vlogHTML? `<div class="inline-flex items-center gap-2">${vlogHTML}</div>`:""}
+          </div>
+        `;
+        wrap.appendChild(cards);
+      });
+    }
+
+    // ---------- Render Routes (sample main hops per day) ----------
+    const dailyRoutes = [
+      ["Day 2：滋庵 → 後樂園", [34.665420,133.916729],[34.6681250,133.935139]],
+      ["Day 2：後樂園 → 岡山城", [34.6681250,133.935139],[34.6651806,133.9360528]],
+      ["Day 3：滋庵 → 吉備津神社", [34.665420,133.916729],[34.670667,133.850611]],
+      ["Day 4：高松站 → 栗林公園", [34.347379,134.045974],[34.329591,134.043968]],
+      ["Day 5：滋庵 → 撚る屋", [34.665420,133.916729],[34.597035,133.776218]],
+      ["Day 6：撚る屋 → 阿智神社", [34.597035,133.776218],[34.59778,133.77361]],
+      ["Day 7：撚る屋 → 岡山站", [34.597035,133.776218],[34.6663694,133.9185889]]
+    ];
+    function renderRoutes(){
+      const box = document.getElementById('routes');
+      box.innerHTML = "";
+      dailyRoutes.forEach(([title, o, d])=>{
+        const row = document.createElement('div');
+        row.className = "bg-white jp-card shadow-soft p-4";
+        row.innerHTML = `
+          <div class="font-semibold">${title}</div>
+          <div class="mt-2 flex flex-wrap gap-2 text-sm">
+            <a class="btn" target="_blank" href="${routeLink(o,d,'driving')}">開車</a>
+            <a class="btn" target="_blank" href="${routeLink(o,d,'walking')}">步行</a>
+            <a class="btn" target="_blank" href="${routeLink(o,d,'bicycling')}">腳踏車</a>
+          </div>
+        `;
+        box.appendChild(row);
+      });
+    }
+
+    // ---------- Map ----------
+    let map;
+    function initMap(){
+      map = L.map('map').setView([34.65,133.85], 10);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
+      places.forEach(([name,type,lat,lng])=>{
+        const color = typeColor(type);
+        const marker = L.circleMarker([lat,lng],{radius:8, color, fillColor:color, weight:1, fillOpacity:.8}).addTo(map);
+        const popup = `
+          <div class="text-sm">
+            <div class="font-semibold mb-1">${name}</div>
+            <div class="flex gap-2">
+              <a target="_blank" href="${gmapLink(lat,lng)}">Google地圖</a>
+              <a target="_blank" href="${streetView(lat,lng)}">街景</a>
+            </div>
+          </div>`;
+        marker.bindPopup(popup);
+      });
+    }
+
+    // ---------- Tabs logic ----------
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+        document.querySelector(target).classList.remove('hidden');
+        if(target==="#tab-cards") renderCards();
+        if(target==="#tab-routes") renderRoutes();
+        if(target==="#tab-map") setTimeout(()=>{ if(!map){ initMap(); } else { map.invalidateSize(); } }, 50);
+      });
+    });
+    // default
+    document.querySelector('[data-target="#tab-timeline"]').click();
+  </script>
+</body>
+</html>
